@@ -1,0 +1,10 @@
+# OS X
+.DS_Store
+
+# editors
+.vscode
+
+bin
+pkg
+
+*.exe
