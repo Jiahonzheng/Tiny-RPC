@@ -11,12 +11,12 @@ type Client struct {
 	conn net.Conn
 }
 
-// NewClient creates a new client.
+// NewClient creates a new client
 func NewClient(conn net.Conn) *Client {
 	return &Client{conn}
 }
 
-// Call transforms a function prototype into a function.
+// Call transforms a function prototype into a function
 func (c *Client) Call(name string, fptr interface{}) {
 	container := reflect.ValueOf(fptr).Elem()
 

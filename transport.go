@@ -18,13 +18,13 @@ func NewTransport(conn net.Conn) *Transport {
 
 // Send data
 func (t *Transport) Send(req Data) error {
-	b, err := encode(req)
+	b, err := encode(req) // Encode req into bytes
 	if err != nil {
 		return err
 	}
 	buf := make([]byte, 4+len(b))
-	binary.BigEndian.PutUint32(buf[:4], uint32(len(b)))
-	copy(buf[4:], b)
+	binary.BigEndian.PutUint32(buf[:4], uint32(len(b))) // Set Header field
+	copy(buf[4:], b)                                    // Set Data field
 	_, err = t.conn.Write(buf)
 	return err
 }
@@ -36,12 +36,12 @@ func (t *Transport) Receive() (Data, error) {
 	if err != nil {
 		return Data{}, err
 	}
-	dataLen := binary.BigEndian.Uint32(header)
-	data := make([]byte, dataLen)
+	dataLen := binary.BigEndian.Uint32(header) // Read Header filed
+	data := make([]byte, dataLen)              // Read Data Field
 	_, err = io.ReadFull(t.conn, data)
 	if err != nil {
 		return Data{}, err
 	}
-	rsp, err := decode(data)
+	rsp, err := decode(data) // Decode rsp from bytes
 	return rsp, err
 }

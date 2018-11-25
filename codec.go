@@ -22,7 +22,6 @@ func encode(data Data) ([]byte, error) {
 }
 
 func decode(b []byte) (Data, error) {
-	gob.Register(Data{})
 	buf := bytes.NewBuffer(b)
 	decoder := gob.NewDecoder(buf)
 	var data Data

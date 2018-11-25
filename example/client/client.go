@@ -27,7 +27,7 @@ func main() {
 	if err != nil {
 		log.Printf("query error: %v\n", err)
 	} else {
-		log.Println(u.Name, u.Age, u.Msg)
+		log.Printf("query result: %v %v %v\n", u.Name, u.Age, u.Msg)
 	}
 	u, err = correctQuery(2)
 	if err != nil {

@@ -14,12 +14,12 @@ type Server struct {
 	funcs map[string]reflect.Value
 }
 
-// NewServer creates a new server.
+// NewServer creates a new server
 func NewServer(addr string) *Server {
 	return &Server{addr: addr, funcs: make(map[string]reflect.Value)}
 }
 
-// Run server.
+// Run server
 func (s *Server) Run() {
 	l, err := net.Listen("tcp", s.addr)
 	if err != nil {
@@ -85,7 +85,7 @@ func (s *Server) Run() {
 	}
 }
 
-// Register a method via name.
+// Register a method via name
 func (s *Server) Register(name string, f interface{}) {
 	if _, ok := s.funcs[name]; ok {
 		return
